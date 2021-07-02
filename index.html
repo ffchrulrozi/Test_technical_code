@@ -1,0 +1,31 @@
+<input type="text" id="number" />
+<br />
+
+<button onclick="get('segitiga')">Generate Segitiga</button>
+<button onclick="get('ganjil')">Generate Bilangan Ganjil</button>
+<button onclick="get('prima')">Generate Bilangan Prima</button>
+
+<h2>Result:</h2>
+
+<div id='result'></div>
+
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+
+<script>
+function get(type){
+  $('#result').html('')
+  let number = $('#number').val()
+  if(isNaN(number)){
+    alert('Yang anda inputkan bukanlah angka!')
+    $('#number').val('')
+  }
+
+  else{
+    $.ajax({
+      url: `http://localhost:3000?type=${type}&number=${number}`
+    }).then(response=>{
+      $('#result').html(response)
+    })
+  }
+}
+</script>
